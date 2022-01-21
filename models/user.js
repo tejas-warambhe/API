@@ -35,5 +35,6 @@ module.exports = sequelize.define("User", {
         type: Sequelize.DATE,
 
     }
+    //ok
 
 });
