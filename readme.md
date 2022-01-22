@@ -25,7 +25,7 @@ npm install
 
 dump the initialiseDatabase.sql commands in your db
 
-Replace your own Database details in the ../database/connection.js
+Replace your own Database details in ../database/connection.js as well as in ../config
 
 Use this command to migrate the users table
 ```
