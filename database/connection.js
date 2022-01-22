@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('users', 'root', 'tejas', { host: '127.0.0.1', dialect: 'mysql' });
+const sequelize = new Sequelize('users', 'root', 'tejas', { host: '127.0.0.1', dialect: 'mysql' }); //replace your db user_id and password
 
 sequelize
     .authenticate()

@@ -6,8 +6,14 @@ const User = require('../models/user');
 const router = Router();
 
 
-
-
+// /login generates a JWT token for an hour which allows us to access UPDATE and INSERT operation
+/* send body as 
+{ 
+    "name" : "admin"
+    "password": "admin"
+}
+*/
+//to recieve the JWT token 
 router.post('/login', async(req, res) => {
 
     try {
@@ -29,7 +35,7 @@ router.post('/login', async(req, res) => {
 });
 
 
-
+//just a plain get function to recieve every user's details
 router.get('/', async(req, res) => {
     try {
         const users = await User.findAll();
@@ -39,6 +45,7 @@ router.get('/', async(req, res) => {
     }
 });
 
+//details of a specific user given the user_id as a query parameter.
 router.get('/details/:id', async(req, res) => {
     const { id } = req.params;
     try {
@@ -56,6 +63,10 @@ router.get('/details/:id', async(req, res) => {
     }
 });
 
+//inserts a new user to the database
+//Please provide the headers as
+// token : <YOUR GENERATED JWT TOKEN>
+//Content-type: application/json
 router.post('/insert', authorisation, async(req, res) => {
     const { user_name, user_email, user_password, user_image, total_orders } = req.body;
     console.log(user_image);
@@ -67,13 +78,14 @@ router.post('/insert', authorisation, async(req, res) => {
             user_image: user_image,
             total_orders: total_orders
         });
-        console.log(user);
+
         res.json("User Created Succesfully");
     } catch (err) {
         console.log(err.message);
     }
 });
 
+//image gets the image of an user given the user_id as a query parameter
 router.get('/image/:id', async(req, res) => {
     const { id } = req.params;
     try {
@@ -85,6 +97,10 @@ router.get('/image/:id', async(req, res) => {
     }
 })
 
+//Updates the existing User
+//Please provide the headers as
+// token : <YOUR GENERATED JWT TOKEN>
+//Content-type: application/json
 router.put('/update', authorisation, async(req, res) => {
     const { user_id, user_name, user_email, user_password, user_image, total_orders } = req.body;
 
@@ -94,13 +110,15 @@ router.put('/update', authorisation, async(req, res) => {
                 user_id: user_id
             }
         });
-        console.log(response);
+
         res.json(response);
     } catch (err) {
         console.log(err.message);
     }
 
 });
+
+//deletes the existing user
 
 router.delete('/delete/:id', async(req, res) => {
     const { id } = req.params;
@@ -110,7 +128,7 @@ router.delete('/delete/:id', async(req, res) => {
                 user_id: id
             }
         });
-        console.log(response);
+
         res.json(response);
     } catch (err) {
         console.log(err.message);
