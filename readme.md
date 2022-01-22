@@ -31,7 +31,10 @@ Use this command to migrate the users table
 ```
 sequelize db:migrate
 ```
+To start
+```
 npm start
+```
 
 Generate JWT token by sending body as 
 { 
@@ -44,10 +47,5 @@ token : <YOUR GENERATED JWT TOKEN>
 Content-type: application/json
 
 for using update and insert routes
-## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
 
