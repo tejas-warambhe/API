@@ -4,7 +4,8 @@ const sequelize = require('../database/connection');
 module.exports = sequelize.define("User", {
     user_id: {
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true
     },
     user_name: {
         type: Sequelize.STRING,
@@ -27,11 +28,13 @@ module.exports = sequelize.define("User", {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    created_at: {
+    createdAt: {
+        field: 'created_at',
         type: Sequelize.DATE,
 
     },
-    last_logged_in: {
+    updatedAt: {
+        field: 'last_logged_in',
         type: Sequelize.DATE,
 
     }
